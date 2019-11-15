@@ -1,0 +1,37 @@
+{
+    "name": "brotkrueml/typo3-jobrouter-form",
+    "type": "typo3-cms-extension",
+    "description": "Form finishers for pushing data to JobRouter installations",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Chris Müller",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "brotkrueml/typo3-jobrouter-connector": "^0.3",
+        "brotkrueml/typo3-jobrouter-data": "^0.2",
+        "typo3/cms-core": "^9.5",
+        "typo3/cms-form": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Brotkrueml\\JobRouterForm\\": "Classes"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "jobrouter_form",
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/web"
+        }
+    }
+}

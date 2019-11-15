@@ -1,0 +1,13 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          finishersDefinition:
+            JobData:
+              implementationClassName: 'Brotkrueml\JobRouterForm\Domain\Finishers\JobDataFinisher'
+                #options:
+                #  tableUid: <tableUid>
+                #  elements:
+                #    <elementIdentifier>:
+                #      mapOnJobDataColumn: <jobDataColumnName>
