@@ -17,6 +17,10 @@
         "typo3/cms-core": "^9.5",
         "typo3/cms-form": "^9.5"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4",
+        "typo3/testing-framework": "^4.13"
+    },
     "autoload": {
         "psr-4": {
             "Brotkrueml\\JobRouterForm\\": "Classes"

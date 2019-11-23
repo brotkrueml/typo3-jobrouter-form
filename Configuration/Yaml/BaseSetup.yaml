@@ -8,6 +8,8 @@ TYPO3:
               implementationClassName: 'Brotkrueml\JobRouterForm\Domain\Finishers\JobDataFinisher'
                 #options:
                 #  tableUid: <tableUid>
-                #  elements:
-                #    <elementIdentifier>:
-                #      mapOnJobDataColumn: <jobDataColumnName>
+                #  columns:
+                #    <jobDataColumnName>:
+                #      mapOnFormField: <formElementIdentifier>
+                #    <jobDataColumnName>:
+                #      staticValue: 'some static value'

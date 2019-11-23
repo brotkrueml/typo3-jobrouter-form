@@ -13,9 +13,8 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
-use TYPO3\CMS\Form\Domain\Model\FormElements\FormElementInterface;
 
-final class JobDataFinisher extends AbstractFinisher
+class JobDataFinisher extends AbstractFinisher
 {
     private const TRANSFER_ACTION = 1;
     private const TRANSFER_TABLE = 'tx_jobrouterform_domain_model_transfer';
@@ -25,7 +24,7 @@ final class JobDataFinisher extends AbstractFinisher
         $this->writeFormDataToDatabase();
     }
 
-    private function writeFormDataToDatabase(): void
+    protected function writeFormDataToDatabase(): void
     {
         $formData = $this->prepareData();
 
@@ -50,28 +49,27 @@ final class JobDataFinisher extends AbstractFinisher
         $databaseConnection->insert(static::TRANSFER_TABLE, $row);
     }
 
-    private function prepareData(): array
+    protected function prepareData(): array
     {
-        $elementsConfiguration = $this->getElements();
+        $formValues = $this->getFormValues();
 
         $databaseData = [];
-        foreach ($this->getFormValues() as $elementIdentifier => $elementValue) {
-            $element = $this->getElementByIdentifier($elementIdentifier);
-            if (!$element instanceof FormElementInterface || !isset($elementsConfiguration[$elementIdentifier]['mapOnJobDataColumn'])) {
-                continue;
+        foreach ($this->getColumns() as $columnName => $columnConfiguration) {
+            $staticValue = $columnConfiguration['staticValue'] ?? false;
+            if ($staticValue) {
+                $databaseData[$columnName] = $staticValue;
             }
 
-            if (\is_array($elementValue)) {
-                $elementValue = implode(',', $elementValue);
+            $elementIdentifier = $columnConfiguration['mapOnFormField'] ?? false;
+            if ($elementIdentifier) {
+                $databaseData[$columnName] = $formValues[$elementIdentifier] ?? '';
             }
-
-            $databaseData[$elementsConfiguration[$elementIdentifier]['mapOnJobDataColumn']] = $elementValue;
         }
 
         return $databaseData;
     }
 
-    private function getTableUid(): int
+    protected function getTableUid(): int
     {
         $tableUid = $this->parseOption('tableUid');
 
@@ -100,17 +98,17 @@ final class JobDataFinisher extends AbstractFinisher
         return $tableUid;
     }
 
-    private function getElements(): array
+    protected function getColumns(): array
     {
-        return $this->parseOption('elements');
+        return $this->parseOption('columns');
     }
 
-    private function getFormValues(): array
+    protected function getFormValues(): array
     {
         return $this->finisherContext->getFormValues();
     }
 
-    private function getElementByIdentifier(string $elementIdentifier)
+    protected function getElementByIdentifier(string $elementIdentifier)
     {
         return $this
             ->finisherContext
@@ -119,7 +117,7 @@ final class JobDataFinisher extends AbstractFinisher
             ->getElementByIdentifier($elementIdentifier);
     }
 
-    private function getFormIdentifier(): string
+    protected function getFormIdentifier(): string
     {
         return $this
             ->finisherContext
