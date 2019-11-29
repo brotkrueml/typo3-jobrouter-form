@@ -13,5 +13,7 @@ CREATE TABLE tx_jobrouterform_domain_model_transfer (
 
 	PRIMARY KEY (uid),
 	KEY pid (pid),
-	KEY action (action)
+	KEY action (action),
+	KEY in_queue (transfer_date, transfer_success),
+	KEY erroneous (transfer_message(10), transfer_success)
 );

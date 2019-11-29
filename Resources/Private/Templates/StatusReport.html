@@ -1,0 +1,86 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+    <h2>{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:title")}</h2>
+    <p class="lead">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:lead")}</p>
+
+    <h3>{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:status")}</h3>
+    <f:if condition="{firstCreationDate}">
+        <p>
+            {f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:first_date")}:
+            {firstCreationDate -> f:format.date(format: '{settings.dateFormat} {settings.timeFormat}')}
+        </p>
+    </f:if>
+
+    <f:if condition="{numbers.all}">
+        <f:then>
+            <f:render section="status" arguments="{numbers}"/>
+        </f:then>
+        <f:else>
+            <p>{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:no_transfers")}</p>
+        </f:else>
+    </f:if>
+
+    <f:if condition="{erroneousTransfers}">
+        <f:render section="erroneousTransfers" arguments="{transfers: erroneousTransfers}"/>
+    </f:if>
+
+    <f:section name="status">
+        <table class="table table-striped table-hover">
+            <tbody>
+                <tr>
+                    <td class="secondary col-xs-6">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:all_transfers")}</td>
+                    <td class="secondary col-xs-6">{all}</td>
+                </tr>
+                <f:if condition="{successful}">
+                    <tr>
+                        <td class="success col-xs-6">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:successful")}</td>
+                        <td class="success col-xs-6">{successful}</td>
+                    </tr>
+                </f:if>
+                <f:if condition="{inQueue}">
+                    <tr>
+                        <td class="info col-xs-6">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:in_queue")}</td>
+                        <td class="info col-xs-6">{inQueue}</td>
+                    </tr>
+                </f:if>
+                <f:if condition="{erroneous}">
+                    <tr>
+                        <td class="danger col-xs-6">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:erroneous")}</td>
+                        <td class="danger col-xs-6">{erroneous}</td>
+                    </tr>
+                </f:if>
+            </tbody>
+        </table>
+    </f:section>
+
+    <f:section name="erroneousTransfers">
+        <h3>{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:erroneous_transfers")}</h3>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:created")}</th>
+                    <th scope="col">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:form_identifier")}</th>
+                    <th scope="col">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:relation")}</th>
+                    <th scope="col">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:data")}</th>
+                    <th scope="col">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:last_try")}</th>
+                    <th scope="col">{f:translate(key:"LLL:EXT:jobrouter_form/Resources/Private/Language/Reports.xlf:error_message")}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <f:for each="{transfers}" as="transfer">
+                    <tr>
+                        <td class="text-nowrap">{transfer.crdate -> f:format.date(format: settings.dateFormat)}</td>
+                        <td><be:link.editRecord table="tt_content" uid="{transfer.contentElementUid}">{transfer.formIdentifier}</be:link.editRecord></td>
+                        <td><be:link.editRecord table="tx_jobrouterdata_domain_model_table" uid="{transfer.relationUid}">jobdata:{transfer.relationUid}</be:link.editRecord></td>
+                        <td>{transfer.data}</td>
+                        <td class="text-nowrap">{transfer.transferDate -> f:format.date(format: '{settings.dateFormat} {settings.timeFormat}')}</td>
+                        <td>{transfer.transferMessage}</td>
+                    </tr>
+                </f:for>
+            </tbody>
+        </table>
+    </f:section>
+</html>

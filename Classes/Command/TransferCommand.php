@@ -115,21 +115,21 @@ final class TransferCommand extends Command
         }
     }
 
-    private function setTransferResult(int $transferUid, bool $isSuccess, string $errorMessage = ''): void
+    private function setTransferResult(int $transferUid, bool $isSuccess, string $message = ''): void
     {
         $this->databaseConnection
             ->update(
                 static::TRANSFER_TABLE,
                 [
                     'transfer_success' => $isSuccess,
-                    'transfer_tstamp' => time(),
-                    'error_message' => $errorMessage,
+                    'transfer_date' => time(),
+                    'transfer_message' => $message,
                 ],
                 ['uid' => $transferUid],
                 [
                     'transfer_success' => Connection::PARAM_BOOL,
-                    'transfer_tstamp' => Connection::PARAM_INT,
-                    'error_message' => Connection::PARAM_STR,
+                    'transfer_date' => Connection::PARAM_INT,
+                    'transfer_message' => Connection::PARAM_STR,
                     'uid' => Connection::PARAM_INT,
                 ]
             );

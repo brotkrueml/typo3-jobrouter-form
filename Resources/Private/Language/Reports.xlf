@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="EXT:jobrouter_form/Resources/Private/Language/Reports.xlf" date="2019-11-29T10:53:18Z" product-name="jobrouter_form">
+        <header/>
+        <body>
+            <trans-unit id="all_transfers" resname="all_transfers">
+                <source><![CDATA[All transfers]]></source>
+            </trans-unit>
+            <trans-unit id="created" resname="created">
+                <source><![CDATA[Created]]></source>
+            </trans-unit>
+            <trans-unit id="data" resname="data">
+                <source><![CDATA[Data]]></source>
+            </trans-unit>
+            <trans-unit id="description" resname="description">
+                <source><![CDATA[Get a report about the status of pushing data to JobRouter installations.]]></source>
+            </trans-unit>
+            <trans-unit id="erroneous" resname="erroneous">
+                <source><![CDATA[Erroneous]]></source>
+            </trans-unit>
+            <trans-unit id="erroneous_transfers" resname="erroneous_transfers">
+                <source><![CDATA[Erroneous Transfers]]></source>
+            </trans-unit>
+            <trans-unit id="error_message" resname="error_message">
+                <source><![CDATA[Error Message]]></source>
+            </trans-unit>
+            <trans-unit id="first_date" resname="first_date">
+                <source><![CDATA[Date of first available transfer record]]></source>
+            </trans-unit>
+            <trans-unit id="form_identifier" resname="form_identifier">
+                <source><![CDATA[Form Identifier]]></source>
+            </trans-unit>
+            <trans-unit id="in_queue" resname="in_queue">
+                <source><![CDATA[In Queue]]></source>
+            </trans-unit>
+            <trans-unit id="last_try" resname="last_try">
+                <source><![CDATA[Last Try]]></source>
+            </trans-unit>
+            <trans-unit id="lead" resname="lead">
+                <source><![CDATA[This overview gives you information about the number and status of transfers to JobRouter installations. If errors occurred you will also see the failure records and messages.]]></source>
+            </trans-unit>
+            <trans-unit id="no_transfers" resname="no_transfers">
+                <source><![CDATA[No transfers available.]]></source>
+            </trans-unit>
+            <trans-unit id="relation" resname="relation">
+                <source><![CDATA[Relation]]></source>
+            </trans-unit>
+            <trans-unit id="status" resname="status">
+                <source><![CDATA[Status]]></source>
+            </trans-unit>
+            <trans-unit id="successful" resname="successful">
+                <source><![CDATA[Successful]]></source>
+            </trans-unit>
+            <trans-unit id="title" resname="title">
+                <source><![CDATA[JobRouter Form Finishers]]></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
