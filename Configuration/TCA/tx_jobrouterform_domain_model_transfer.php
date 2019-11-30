@@ -45,12 +45,6 @@ return [
                 'type' => 'input'
             ]
         ],
-        'transfer_code' => [
-            'label' => 'transfer_code',
-            'config' => [
-                'type' => 'input'
-            ]
-        ],
         'transfer_date' => [
             'label' => 'transfer_date',
             'config' => [
@@ -66,7 +60,7 @@ return [
     ],
     'types' => [
         '1' => [
-            'showitem' => 'form_identifier, action, relation_uid, data, transfer_success, transfer_code, transfer_date, transfer_message'
+            'showitem' => 'form_identifier, action, relation_uid, data, transfer_success, transfer_date, transfer_message'
         ]
     ]
 ];

@@ -8,7 +8,6 @@ CREATE TABLE tx_jobrouterform_domain_model_transfer (
 	data text,
 	transfer_success tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	transfer_date int(11) unsigned DEFAULT '0' NOT NULL,
-	transfer_code smallint(3) unsigned DEFAULT '0' NOT NULL,
 	transfer_message text,
 
 	PRIMARY KEY (uid),

@@ -38,9 +38,6 @@ class Transfer extends AbstractEntity
     /** @var int */
     protected $transferDate = 0;
 
-    /** @var int */
-    protected $transferCode = 0;
-
     /** @var string */
     protected $transferMessage = '';
 
@@ -112,16 +109,6 @@ class Transfer extends AbstractEntity
     public function setTransferDate(int $transferDate): void
     {
         $this->transferDate = $transferDate;
-    }
-
-    public function getTransferCode(): int
-    {
-        return $this->transferCode;
-    }
-
-    public function setTransferCode(int $transferCode): void
-    {
-        $this->transferCode = $transferCode;
     }
 
     public function getTransferMessage(): string
