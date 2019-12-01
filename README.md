@@ -1,6 +1,6 @@
 # TYPO3 form framework finishers for pushing data to a JobRouter installation
 
-[![Build Status](https://travis-ci.org/brotkrueml/jobrouter_form.svg?branch=master)](https://travis-ci.org/brotkrueml/jobrouter_form)
+[![Build Status](https://travis-ci.org/brotkrueml/typo3-jobrouter-form.svg?branch=master)](https://travis-ci.org/brotkrueml/typo3-jobrouter-form)
 
 The extension supports TYPO3 9 LTS.
 
