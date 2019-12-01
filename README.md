@@ -14,7 +14,15 @@ Planned is also a form finisher to start a process instance.
 
 The extension is work in progress, the interface can change at any time.
 
-### Usage
+
+## Installation
+
+The recommended way to install this extension is by using Composer. In your Composer-based TYPO3 project root, just type
+
+    composer req brotkrueml/typo3-jobrouter-form
+
+
+## Usage
 
 The form finisher can be added to a form. But you have to configure the
 mapping of the form fields to the JobData table columns in the yaml file
