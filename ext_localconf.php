@@ -6,16 +6,16 @@ defined('TYPO3_MODE') or die();
         module.tx_form {
             settings {
                 yamlConfigurations {
-                    1572978126 = EXT:jobrouter_form/Configuration/Yaml/BaseSetup.yaml
-                    1572978127 = EXT:jobrouter_form/Configuration/Yaml/JobData/FormEditorSetup.yaml
+                    1572978126 = EXT:' . $extensionKey . '/Configuration/Yaml/BaseSetup.yaml
+                    1572978127 = EXT:' . $extensionKey . '/Configuration/Yaml/JobData/FormEditorSetup.yaml
                 }
             }
         }
-    
+
         plugin.tx_form {
             settings {
                 yamlConfigurations {
-                    1572978126 = EXT:jobrouter_form/Configuration/Yaml/BaseSetup.yaml
+                    1572978126 = EXT:' . $extensionKey . '/Configuration/Yaml/BaseSetup.yaml
                 }
             }
         }
