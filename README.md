@@ -26,7 +26,10 @@ The recommended way to install this extension is by using Composer. In your Comp
 
 The form finisher can be added to a form. But you have to configure the
 mapping of the form fields to the JobData table columns in the yaml file
-directly. Example:
+directly. It is not possible by now to configure the finisher in the
+GUI.
+
+### Example
 
     finishers:
         -
@@ -47,8 +50,8 @@ directly. Example:
 
 First, you have to define the uid of the table. This is the ID of the
 the table record in TYPO3, not the GUID of the JobData table in JobRouter
-(as there are constellations where this is not unique). 
- 
+(as there are constellations where this is not unique).
+
 Under the `columns` key you assign the JobData columns to the form fields
 or a static value, respectively. As you can see, a table column name don't
 have to be named like the form field name.
