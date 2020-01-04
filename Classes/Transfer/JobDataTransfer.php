@@ -11,7 +11,7 @@ namespace Brotkrueml\JobRouterForm\Transfer;
  */
 
 use Brotkrueml\JobRouterClient\Client\RestClient;
-use Brotkrueml\JobRouterConnector\Service\Rest;
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -47,7 +47,7 @@ final class JobDataTransfer implements SingletonInterface
         $restClient = $this->getRestClient($table);
 
         $resourcePath = \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid());
-        $response = $restClient->request($resourcePath, 'POST', ['json' => ['dataset' => $dataset]]);
+        $response = $restClient->request('POST', $resourcePath, ['json' => ['dataset' => $dataset]]);
 
         $statusCode = $response->getStatusCode();
         if ($statusCode === 201) {
@@ -55,7 +55,7 @@ final class JobDataTransfer implements SingletonInterface
         }
 
         $resourceUrl = $table->getConnection()->getBaseUrl() . $resourcePath;
-        $content = $response->getContent(false);
+        $content = $response->getBody()->getContents();
         throw new TransferException(
             \sprintf(
                 'POST to resource "%s" returned status code "%d"%s',
@@ -104,7 +104,7 @@ final class JobDataTransfer implements SingletonInterface
 
         if (!isset($this->restClients[$connectionUid])) {
             try {
-                $restClient = (new Rest)->getRestClient($table->getConnection());
+                $restClient = (new RestClientFactory)->create($table->getConnection());
             } catch (\Throwable $e) {
                 throw new TransferException(
                     \sprintf(
@@ -117,16 +117,6 @@ final class JobDataTransfer implements SingletonInterface
             }
 
             $this->restClients[$connectionUid] = $restClient;
-        }
-
-        if (empty($restClient)) {
-            throw new TransferException(
-                \sprintf(
-                    'Connection with uid "%d" could not be found or is disabled!',
-                    $table->getConnection()->getUid()
-                ),
-                1573844597
-            );
         }
 
         return $this->restClients[$connectionUid];

@@ -12,8 +12,8 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
-        "brotkrueml/typo3-jobrouter-connector": "^0.4",
-        "brotkrueml/typo3-jobrouter-data": "^0.3",
+        "brotkrueml/typo3-jobrouter-connector": "^0.5",
+        "brotkrueml/typo3-jobrouter-data": "^0.4",
         "typo3/cms-core": "^9.5",
         "typo3/cms-form": "^9.5"
     },
