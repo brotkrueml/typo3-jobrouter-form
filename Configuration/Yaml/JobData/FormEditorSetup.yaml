@@ -3,7 +3,7 @@ TYPO3:
     Form:
       prototypes:
         standard:
-          # Only TYPO3 v10
+          # Only TYPO3 v10+
           formEditor:
             translationFiles:
               1572978126: 'EXT:jobrouter_form/Resources/Private/Language/Database.xlf'
@@ -22,7 +22,7 @@ TYPO3:
           finishersDefinition:
             JobData:
               formEditor:
-                iconIdentifier: 't3-form-icon-finisher'
+                iconIdentifier: 'form-finisher'
                 label: 'formEditor.elements.Form.finisher.JobData.editor.header.label'
                 predefinedDefaults:
                   options: []
